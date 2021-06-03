@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: morrisoncole/pr-lint-action@v1.5.0
         with:
-          title-regex: "#[0-9]+: [A-Za-z0-9-_]"
+          title-regex: "#[0-9]+: [A-Za-z0-9-_ ]"
           on-failed-regex-fail-action: true
           on-failed-regex-request-changes: false
           on-failed-regex-create-review: false
