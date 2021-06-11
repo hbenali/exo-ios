@@ -34,7 +34,7 @@ jobs:
         uses: maierj/fastlane-action@v2.0.1
         with:
           lane: "sync_certificates"
-          options: '{ "keychain_password": "${{ secrets.MATCH_PASSWORD }}" }'
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}  
         env:
           NO_CONFIRM: true
           BUNDLE_ID: com.exoplatform.mob.eXoPlatformiPHone
