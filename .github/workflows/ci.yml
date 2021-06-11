@@ -24,6 +24,8 @@ jobs:
         run: pod install --repo-update 
       - name: Install Homebrew badge packages
         run: brew install librsvg imagemagick graphicsmagick
+      - name: Upgrade fastlane
+        run: gem install fastlane 
       - name: Synchonize Certificates
         uses: maierj/fastlane-action@v2.0.1
         with:
