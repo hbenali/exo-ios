@@ -15,7 +15,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           known_hosts: ${{ secrets.KNOWN_HOSTS }}  
       - name: Setup ruby 2.6
-        uses: actions/setup-ruby@v1
+        uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.6
       - name: Install bundler and dependencies        
@@ -27,7 +27,11 @@ jobs:
       - name: Upgrade fastlane
         run: gem install fastlane 
       - name: Set up keychain
-        run: fastlane run create_keychain name:login password:${{ secrets.MATCH_PASSWORD }}   
+      run: |
+        security create-keychain -p ${{ secrets.MATCH_PASSWORD }} build.keychain
+        security default-keychain -s build.keychain
+        security unlock-keychain -p ${{ secrets.MATCH_PASSWORD }} build.keychain
+        security set-key-partition-list -S apple-tool:,apple: -s -k actions build.keychain
       - name: Synchonize Certificates
         uses: maierj/fastlane-action@v2.0.1
         with:
