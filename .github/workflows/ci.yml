@@ -9,10 +9,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Setup ruby 2.6.3
+      - name: Setup ruby 3.0.1
         uses: actions/setup-ruby@v1
         with:
-          ruby-version: "2.6.3"
+          ruby-version: "3.0.1"
       - name: "Deploy Project"
         uses: maierj/fastlane-action@v2.0.1
         with:
