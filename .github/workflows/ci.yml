@@ -30,12 +30,11 @@ jobs:
         uses: maierj/fastlane-action@v2.0.1
         with:
           lane: "sync_certificates"
-          options: '{ "keychain_password": "${{ secrets.KEYCHAIN_PASSWORD }}" }'
+          options: '{ "keychain_password": "${{ secrets.MATCH_PASSWORD }}" }'
         env:
           NO_CONFIRM: true
           BUNDLE_ID: com.exoplatform.mob.eXoPlatformiPHone
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
-          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}  
       - name: "Deploy eXo Beta to appaloosa"
         uses: maierj/fastlane-action@v2.0.1
         with:
@@ -43,5 +42,3 @@ jobs:
           options: '{ "api_token": "${{ secrets.API_TOKEN_APPALOOSA }}", "store_id": "${{ secrets.STORE_ID_APPALOOSA }}" }'
         env:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}  
-          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}  
-
