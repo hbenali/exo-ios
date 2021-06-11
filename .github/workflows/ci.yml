@@ -17,6 +17,8 @@ jobs:
         run: gem install bundler && bundle install
       - name: Build Project        
         run: pod install --repo-update 
+      - name: Install Homebrew packages
+        run: brew install librsvg imagemagick graphicsmagick
       - name: "Deploy Project"
         uses: maierj/fastlane-action@v2.0.1
         with:
