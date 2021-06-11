@@ -20,10 +20,14 @@ platform :ios do
   desc "Sync (or create if needed) all keys, certs and profiles (development, adhoc, appstore)"
   lane :certificates do |options|
 
-    bundleID = UI.input "Please enter your bundle id:"
+    if ENV["BUNDLE_ID"] 
+      bundleID = ENV["BUNDLE_ID"]
+    else
+      bundleID = UI.input "Please enter your bundle id:"
+    end
     UI.header("Certicates will be generated following parameters")
     UI.message("bundleID: #{bundleID}")
-    if UI.confirm("Confirm ?")
+    if ENV["NO_CONFIRM"] = "true" || UI.confirm("Confirm ?")
       UI.success "Starting build"
       ENV["EXO_APP_IDENTIFIERS"] = "#{bundleID},#{bundleID}.share-extension"
       appIdentifiers = ENV["EXO_APP_IDENTIFIERS"].split(",")
@@ -48,11 +52,14 @@ platform :ios do
 
   desc "Sync all keys, certs and profiles (development and adhoc)"
   lane :sync_certificates do |options|
-
-    bundleID = UI.input "Please enter your bundle id:"
+    if ENV["BUNDLE_ID"] 
+      bundleID = ENV["BUNDLE_ID"]
+    else
+      bundleID = UI.input "Please enter your bundle id:"
+    end
     UI.header("Certicates will be generated following parameters")
     UI.message("bundleID: #{bundleID}")
-    if UI.confirm("Confirm ?")
+    if ENV["NO_CONFIRM"] = "true" || UI.confirm("Confirm ?")
       UI.success "Starting build"
       ENV["EXO_APP_IDENTIFIERS"] = "#{bundleID},#{bundleID}.share-extension"
       appIdentifiers = ENV["EXO_APP_IDENTIFIERS"].split(",")
@@ -89,7 +96,7 @@ platform :ios do
       UI.message("base URL: #{ENV["EXO_APP_BASE_URL"]}, environment name: #{ENV["EXO_APP_ENV_NAME"]}")
       UI.message("build type: #{ENV["EXO_BUILD_TYPE"]}")
 
-      if UI.confirm("Confirm ?")
+      if ENV["NO_CONFIRM"] = "true" || UI.confirm("Confirm ?")
         ENV["EXO_APP_IDENTIFIERS"] = "#{ENV["EXO_APP_ID"]},#{ENV["EXO_APP_ID"]}.share-extension"
         ENV["EXO_APP_CONFIGURATION"] = "Release"
         case ENV["EXO_BUILD_TYPE"]

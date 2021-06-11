@@ -24,6 +24,14 @@ jobs:
         run: pod install --repo-update 
       - name: Install Homebrew packages
         run: brew install librsvg imagemagick graphicsmagick
+      - name: Sync Certificates
+        uses: maierj/fastlane-action@v2.0.1
+        with:
+          lane: "sync_certificates"
+        env:
+          NO_CONFIRM: true
+          BUNDLE_ID: com.exoplatform.mob.eXoPlatformiPHone
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
       - name: "Deploy Project"
         uses: maierj/fastlane-action@v2.0.1
         with:
