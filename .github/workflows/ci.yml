@@ -17,5 +17,5 @@ jobs:
         uses: maierj/fastlane-action@v2.0.1
         with:
           lane: "build_beta_ppr"
-          options: '{ "api_token": ${{ secrets.API_TOKEN_APPALOOSA }}, "store_id": ${{ secrets.STORE_ID_APPALOOSA }} }'
+          options: '{ "api_token": "${{ secrets.API_TOKEN_APPALOOSA }}", "store_id": "${{ secrets.STORE_ID_APPALOOSA }}" }'
 
