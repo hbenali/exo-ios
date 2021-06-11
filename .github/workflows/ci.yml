@@ -18,13 +18,13 @@ jobs:
         uses: actions/setup-ruby@v1
         with:
           ruby-version: 2.6
-      - name: Install Dependencies        
+      - name: Install bundler and dependencies        
         run: gem install bundler && bundle install
-      - name: Build Project        
+      - name: Install Pods        
         run: pod install --repo-update 
-      - name: Install Homebrew packages
+      - name: Install Homebrew badge packages
         run: brew install librsvg imagemagick graphicsmagick
-      - name: Sync Certificates
+      - name: Synchonize Certificates
         uses: maierj/fastlane-action@v2.0.1
         with:
           lane: "sync_certificates"
@@ -32,7 +32,7 @@ jobs:
           NO_CONFIRM: true
           BUNDLE_ID: com.exoplatform.mob.eXoPlatformiPHone
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
-      - name: "Deploy Project"
+      - name: "Deploy eXo Beta to appaloosa"
         uses: maierj/fastlane-action@v2.0.1
         with:
           lane: "build_beta_ppr"
