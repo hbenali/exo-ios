@@ -23,8 +23,6 @@ jobs:
         uses: shimataro/ssh-key-action@v2
         with:
           key: ${{ secrets.SSH_KEY }}
-          name: id_rsa # optional
-        if_key_exists: fail  
       - name: "Deploy Project"
         uses: maierj/fastlane-action@v2.0.1
         with:
