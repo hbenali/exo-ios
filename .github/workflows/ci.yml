@@ -15,6 +15,8 @@ jobs:
           ruby-version: "3.0.1"
       - name: Install Dependencies        
         run: gem install bundler && bundle install
+      - name: Build Project        
+        run: pod install --repo-update 
       - name: "Deploy Project"
         uses: maierj/fastlane-action@v2.0.1
         with:
