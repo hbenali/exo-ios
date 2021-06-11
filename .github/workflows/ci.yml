@@ -35,6 +35,7 @@ jobs:
         with:
           lane: "sync_certificates"
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}  
+          MATCH_KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
         env:
           NO_CONFIRM: true
           BUNDLE_ID: com.exoplatform.mob.eXoPlatformiPHone
