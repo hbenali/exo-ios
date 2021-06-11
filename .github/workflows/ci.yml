@@ -13,6 +13,8 @@ jobs:
         uses: actions/setup-ruby@v1
         with:
           ruby-version: "3.0.1"
+      - name: Install Dependencies        
+        run: gem install bundler && bundle install
       - name: "Deploy Project"
         uses: maierj/fastlane-action@v2.0.1
         with:
