@@ -8,12 +8,13 @@ jobs:
     runs-on: macos-10.15
     steps:
       - name: Checkout
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
       - name: Setup ruby 2.7.2
-      - uses: actions/setup-ruby@v1
-      with:
-        ruby-version: '2.7.2'
-      - uses: maierj/fastlane-action@v2.0.1
-      with:
-        lane: 'build_beta_ppr'
-        options: '{ "api_token": ${{ secrets.API_TOKEN_APPALOOSA }}, "store_id": ${{ secrets.STORE_ID_APPALOOSA }} }'
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '2.7.2'
+      - name: 'Deploy Project'  
+        uses: maierj/fastlane-action@v2.0.1
+        with:
+          lane: 'build_beta_ppr'
+          options: '{ "api_token": ${{ secrets.API_TOKEN_APPALOOSA }}, "store_id": ${{ secrets.STORE_ID_APPALOOSA }} }'
