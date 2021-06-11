@@ -9,6 +9,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_KEY }}
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}  
       - name: Setup ruby 2.6
         uses: actions/setup-ruby@v1
         with:
@@ -19,10 +24,6 @@ jobs:
         run: pod install --repo-update 
       - name: Install Homebrew packages
         run: brew install librsvg imagemagick graphicsmagick
-      - name: Install SSH key
-        uses: shimataro/ssh-key-action@v2
-        with:
-          key: ${{ secrets.SSH_KEY }}
       - name: "Deploy Project"
         uses: maierj/fastlane-action@v2.0.1
         with:
