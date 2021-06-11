@@ -14,10 +14,10 @@ jobs:
         with:
           key: ${{ secrets.SSH_KEY }}
           known_hosts: ${{ secrets.KNOWN_HOSTS }}  
-      - name: Setup ruby 2.7
+      - name: Setup ruby 2.6
         uses: actions/setup-ruby@v1
         with:
-          ruby-version: 2.7
+          ruby-version: 2.6
       - name: Install bundler and dependencies        
         run: gem install bundler && bundle install
       - name: Install Pods        
