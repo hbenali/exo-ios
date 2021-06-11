@@ -26,6 +26,8 @@ jobs:
         run: brew install librsvg imagemagick graphicsmagick
       - name: Upgrade fastlane
         run: gem install fastlane 
+      - name: Set up keychain
+        run: fastlane run create_keychain name:login password:${{ secrets.MATCH_PASSWORD }}"   
       - name: Synchonize Certificates
         uses: maierj/fastlane-action@v2.0.1
         with:
@@ -35,6 +37,7 @@ jobs:
           NO_CONFIRM: true
           BUNDLE_ID: com.exoplatform.mob.eXoPlatformiPHone
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}  
       - name: "Deploy eXo Beta to appaloosa"
         uses: maierj/fastlane-action@v2.0.1
         with:
