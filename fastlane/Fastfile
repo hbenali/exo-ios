@@ -278,7 +278,7 @@ platform :ios do
 
   # Only for Github actions
   desc "Create Keychain"
-  lane :create_keychain
+  lane :create_keychain do
   create_keychain(
     name: "buildci",
     default_keychain: true,
