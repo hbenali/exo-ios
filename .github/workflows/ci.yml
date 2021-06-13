@@ -28,6 +28,10 @@ jobs:
      #   run: bundle update fastlane 
      # - name: Clean old gems
       #  run: gem cleanup 
+      - name: Create Keychain
+        uses: maierj/fastlane-action@v2.0.1
+        with:
+          lane: "create_keychain"
       - name: Synchonize Certificates
         uses: maierj/fastlane-action@v2.0.1
         with:
@@ -38,11 +42,10 @@ jobs:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}  
           MATCH_KEYCHAIN_PASSWORD : ${{ secrets.KEYCHAIN_PASSWORD }}
       - name: "Deploy eXo Beta to appaloosa"
-     #   uses: maierj/fastlane-action@v2.0.1
-     #   with:
-     #     lane: "build_beta_ppr"
-     #     options: '{ "api_token": "${{ secrets.API_TOKEN_APPALOOSA }}", "store_id": "${{ secrets.STORE_ID_APPALOOSA }}" }'
-        run: fastlane build_beta_ppr api_token:${{ secrets.API_TOKEN_APPALOOSA }} store_id:${{ secrets.STORE_ID_APPALOOSA }} --verbose
+        uses: maierj/fastlane-action@v2.0.1
+        with:
+          lane: "build_beta_ppr"
+          options: '{ "api_token": "${{ secrets.API_TOKEN_APPALOOSA }}", "store_id": "${{ secrets.STORE_ID_APPALOOSA }}" }'
         env:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}  
           MATCH_KEYCHAIN_PASSWORD : ${{ secrets.KEYCHAIN_PASSWORD }}

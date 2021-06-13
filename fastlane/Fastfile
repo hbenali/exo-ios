@@ -276,4 +276,15 @@ platform :ios do
     # upload_to_app_store
   end
 
+  # Only for Github actions
+  desc "Create Keychain"
+  lane :create_keychain
+  create_keychain(
+    name: "buildci",
+    default_keychain: true,
+    unlock: true,
+    timeout: 3600,
+    lock_when_sleeps: true
+  )
+
 end
