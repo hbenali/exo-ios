@@ -1,4 +1,4 @@
-name: iOS CICD
+name: eXo iOS CI/CD
 
 on:
   push:
@@ -23,7 +23,7 @@ jobs:
      # - name: Install Pods        
       #  run: pod install --repo-update 
       - name: Install Homebrew badge packages
-        run: brew install librsvg imagemagick graphicsmagick >/dev/null
+        run: brew install librsvg imagemagick graphicsmagick
     #  - name: Upgrade fastlane
      #   run: bundle update fastlane 
      # - name: Clean old gems
@@ -37,7 +37,7 @@ jobs:
         with:
           lane: "sync_certificates"
         env:
-          NO_CONFIRM: true
+          CI_MODE: true
           BUNDLE_ID: com.exoplatform.mob.eXoPlatformiPHone
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}  
           #MATCH_KEYCHAIN_PASSWORD : ${{ secrets.KEYCHAIN_PASSWORD }}

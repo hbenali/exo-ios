@@ -27,7 +27,7 @@ platform :ios do
     end
     UI.header("Certicates will be generated following parameters")
     UI.message("bundleID: #{bundleID}")
-    if ENV["NO_CONFIRM"] = "true" || UI.confirm("Confirm ?")
+    if ENV["CI_MODE"] = "true" || UI.confirm("Confirm ?")
       UI.success "Starting build"
       ENV["EXO_APP_IDENTIFIERS"] = "#{bundleID},#{bundleID}.share-extension"
       appIdentifiers = ENV["EXO_APP_IDENTIFIERS"].split(",")
@@ -59,7 +59,7 @@ platform :ios do
     end
     UI.header("Certicates will be generated following parameters")
     UI.message("bundleID: #{bundleID}")
-    if ENV["NO_CONFIRM"] = "true" || UI.confirm("Confirm ?")
+    if ENV["CI_MODE"] = "true" || UI.confirm("Confirm ?")
       UI.success "Starting build"
       ENV["EXO_APP_IDENTIFIERS"] = "#{bundleID},#{bundleID}.share-extension"
       appIdentifiers = ENV["EXO_APP_IDENTIFIERS"].split(",")
@@ -96,7 +96,7 @@ platform :ios do
       UI.message("base URL: #{ENV["EXO_APP_BASE_URL"]}, environment name: #{ENV["EXO_APP_ENV_NAME"]}")
       UI.message("build type: #{ENV["EXO_BUILD_TYPE"]}")
 
-      if ENV["NO_CONFIRM"] = "true" || UI.confirm("Confirm ?")
+      if ENV["CI_MODE"] = "true" || UI.confirm("Confirm ?")
         ENV["EXO_APP_IDENTIFIERS"] = "#{ENV["EXO_APP_ID"]},#{ENV["EXO_APP_ID"]}.share-extension"
         ENV["EXO_APP_CONFIGURATION"] = "Release"
         case ENV["EXO_BUILD_TYPE"]
@@ -279,12 +279,13 @@ platform :ios do
   # Only for Github actions
   desc "Create Keychain"
   lane :create_keychain do
-  create_keychain(
-    name: "buildci",
-    default_keychain: true,
-    unlock: true,
-    timeout: 3600,
-    lock_when_sleeps: true
-  )
+    create_keychain(
+      name: "buildci",
+      default_keychain: true,
+      unlock: true,
+      timeout: 3600,
+      lock_when_sleeps: true
+    )
+  end
 
 end
