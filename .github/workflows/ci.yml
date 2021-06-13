@@ -14,12 +14,12 @@ jobs:
         with:
           key: ${{ secrets.SSH_KEY }}
           known_hosts: ${{ secrets.KNOWN_HOSTS }}  
-     # - name: Setup ruby 2.6
-      #  uses: ruby/setup-ruby@v1
-       # with:
-        #  ruby-version: 2.6
-     # - name: Install bundler and dependencies        
-     #   run: gem install bundler && bundle install 
+      - name: Setup ruby 2.6
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6
+      - name: Install bundler and dependencies        
+        run: gem install bundler && bundle install 
      # - name: Install Pods        
       #  run: pod install --repo-update 
       - name: Install Homebrew badge packages
