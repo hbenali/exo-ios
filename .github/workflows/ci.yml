@@ -42,7 +42,7 @@ jobs:
      #   with:
      #     lane: "build_beta_ppr"
      #     options: '{ "api_token": "${{ secrets.API_TOKEN_APPALOOSA }}", "store_id": "${{ secrets.STORE_ID_APPALOOSA }}" }'
-        run: fastlane build_beta_ppr api_token:${{ secrets.API_TOKEN_APPALOOSA }} store_id":${{ secrets.STORE_ID_APPALOOSA }} --verbose
+        run: fastlane build_beta_ppr api_token:${{ secrets.API_TOKEN_APPALOOSA }} store_id:${{ secrets.STORE_ID_APPALOOSA }} --verbose
         env:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}  
           MATCH_KEYCHAIN_PASSWORD : ${{ secrets.KEYCHAIN_PASSWORD }}
