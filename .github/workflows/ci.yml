@@ -21,13 +21,13 @@ jobs:
       - name: Install bundler and dependencies        
         run: gem install bundler && bundle install
       - name: Install Pods        
-        run: pod install --repo-update 
+        run: pod install --repo-update >/dev/null
       - name: Install Homebrew badge packages
-        run: brew install librsvg imagemagick graphicsmagick
+        run: brew install librsvg imagemagick graphicsmagick >/dev/null
       - name: Upgrade fastlane
-        run: bundle update fastlane 
+        run: bundle update fastlane >/dev/null
       - name: Clean old gems
-        run: gem cleanup  
+        run: gem cleanup >/dev/null
       - name: Synchonize Certificates
         uses: maierj/fastlane-action@v2.0.1
         with:
