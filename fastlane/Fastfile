@@ -287,27 +287,26 @@ platform :ios do
       timeout: 3600,
       lock_when_sleeps: true,
     )
-  end
-  bundleID = ENV["BUNDLE_ID"]
-  UI.header("Certicates will be generated following parameters")
-  UI.message("bundleID: #{bundleID}")
-  UI.success "Starting build"
-  ENV["EXO_APP_IDENTIFIERS"] = "#{bundleID},#{bundleID}.share-extension"
-  appIdentifiers = ENV["EXO_APP_IDENTIFIERS"].split(",")
-  match(
-    app_identifier: appIdentifiers,
-    type: "development",
-    readonly: true,
-    keychain_name: ENV["MATCH_KEYCHAIN_NAME"],
-    keychain_password: ENV["MATCH_KEYCHAIN_PASSWORD"],
-  )
-  match(
-    app_identifier: appIdentifiers,
-    type: "adhoc",
-    readonly: true,
-    keychain_name: ENV["MATCH_KEYCHAIN_NAME"],
-    keychain_password: ENV["MATCH_KEYCHAIN_PASSWORD"],
-  )
+    bundleID = ENV["BUNDLE_ID"]
+    UI.header("Certicates will be generated following parameters")
+    UI.message("bundleID: #{bundleID}")
+    UI.success "Starting build"
+    ENV["EXO_APP_IDENTIFIERS"] = "#{bundleID},#{bundleID}.share-extension"
+    appIdentifiers = ENV["EXO_APP_IDENTIFIERS"].split(",")
+    match(
+      app_identifier: appIdentifiers,
+      type: "development",
+      readonly: true,
+      keychain_name: ENV["MATCH_KEYCHAIN_NAME"],
+      keychain_password: ENV["MATCH_KEYCHAIN_PASSWORD"],
+    )
+    match(
+      app_identifier: appIdentifiers,
+      type: "adhoc",
+      readonly: true,
+      keychain_name: ENV["MATCH_KEYCHAIN_NAME"],
+      keychain_password: ENV["MATCH_KEYCHAIN_PASSWORD"],
+    )
   end
 
 end
