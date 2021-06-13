@@ -285,6 +285,7 @@ platform :ios do
       unlock: true,
       timeout: 3600,
       lock_when_sleeps: true
+      password: SecureRandom.base64
     )
   end
 
