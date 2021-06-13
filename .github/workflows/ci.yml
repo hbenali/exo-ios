@@ -28,19 +28,16 @@ jobs:
      #   run: bundle update fastlane 
      # - name: Clean old gems
       #  run: gem cleanup 
-      - name: Create Keychain
-        uses: maierj/fastlane-action@v2.0.1
-        with:
-          lane: "create_keychain"
       - name: Synchonize Certificates
         uses: maierj/fastlane-action@v2.0.1
         with:
-          lane: "sync_certificates"
+          lane: "ci_sync_certificates"
         env:
           CI_MODE: true
           BUNDLE_ID: com.exoplatform.mob.eXoPlatformiPHone
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}  
-          #MATCH_KEYCHAIN_PASSWORD : ${{ secrets.KEYCHAIN_PASSWORD }}
+          MATCH_KEYCHAIN_PASSWORD : ${{ secrets.KEYCHAIN_PASSWORD }}
+          MATCH_KEYCHAIN_NAME : ${{ secrets.KEYCHAIN_NAME }}
       - name: "Deploy eXo Beta to appaloosa"
         uses: maierj/fastlane-action@v2.0.1
         with:
@@ -48,5 +45,5 @@ jobs:
           options: '{ "api_token": "${{ secrets.API_TOKEN_APPALOOSA }}", "store_id": "${{ secrets.STORE_ID_APPALOOSA }}" }'
         env:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}  
-         # MATCH_KEYCHAIN_PASSWORD : ${{ secrets.KEYCHAIN_PASSWORD }}
+          MATCH_KEYCHAIN_PASSWORD : ${{ secrets.KEYCHAIN_PASSWORD }}
 

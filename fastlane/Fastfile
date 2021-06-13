@@ -277,16 +277,37 @@ platform :ios do
   end
 
   # Only for Github actions
-  desc "Create Keychain"
-  lane :create_keychain do
+  desc "Sync CI Certificates"
+  lane :ci_sync_certificates do
     create_keychain(
-      name: "buildci",
+      name: ENV["MATCH_KEYCHAIN_NAME"],
+      password: ENV["MATCH_KEYCHAIN_PASSWORD"],
       default_keychain: true,
       unlock: true,
       timeout: 3600,
       lock_when_sleeps: true,
-      password: SecureRandom.base64
     )
+  end
+  bundleID = ENV["BUNDLE_ID"]
+  UI.header("Certicates will be generated following parameters")
+  UI.message("bundleID: #{bundleID}")
+  UI.success "Starting build"
+  ENV["EXO_APP_IDENTIFIERS"] = "#{bundleID},#{bundleID}.share-extension"
+  appIdentifiers = ENV["EXO_APP_IDENTIFIERS"].split(",")
+  match(
+    app_identifier: appIdentifiers,
+    type: "development",
+    readonly: true,
+    keychain_name: ENV["MATCH_KEYCHAIN_NAME"],
+    keychain_password: ENV["MATCH_KEYCHAIN_PASSWORD"],
+  )
+  match(
+    app_identifier: appIdentifiers,
+    type: "adhoc",
+    readonly: true,
+    keychain_name: ENV["MATCH_KEYCHAIN_NAME"],
+    keychain_password: ENV["MATCH_KEYCHAIN_PASSWORD"],
+  )
   end
 
 end
