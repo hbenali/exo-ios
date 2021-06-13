@@ -24,8 +24,8 @@ jobs:
       #  run: pod install --repo-update 
       - name: Install Homebrew badge packages
         run: brew install librsvg imagemagick graphicsmagick
-    #  - name: Upgrade fastlane
-     #   run: bundle update fastlane 
+      - name: Upgrade fastlane
+        run: bundle update fastlane 
      # - name: Clean old gems
       #  run: gem cleanup 
       - name: Synchonize Certificates
