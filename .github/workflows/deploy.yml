@@ -13,7 +13,8 @@ name: eXo iOS Beta Appaloosa CI/CD
 
 on:
   push:
-    branches: [develop, acceptance]
+    tags:
+      - '6.2-beta*'
 jobs:
   deploy: 
     runs-on: macos-10.15
@@ -50,6 +51,8 @@ jobs:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}  
           MATCH_KEYCHAIN_PASSWORD : ${{ secrets.KEYCHAIN_PASSWORD }}
           MATCH_KEYCHAIN_NAME : ${{ secrets.KEYCHAIN_NAME }}
+      - name: Set env
+        run: echo "EXO_APP_ENVIRONMENT=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
       # Deploy eXo iOS bundle to appalossa store
       - name: "Deploy eXo Beta to appaloosa"
         uses: maierj/fastlane-action@v2.0.1
