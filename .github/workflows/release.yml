@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@master
       - name: Bump version and push tag
         env: 
-          TAG_PREFIX: '6.2.beta'
+          TAG_PREFIX: '6.2-beta'
         run: | 
               git config --global user.email "exo-swf@exoplatform.com"
               git config --global user.name "eXo Software Factory"
