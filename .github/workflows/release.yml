@@ -20,7 +20,7 @@ jobs:
               else 
                 INDEX=$(echo $CURRENT_TAG | sed "s|.*${TAG_PREFIX}||")
                 ((INDEX++))
-                [ "${INDEX}" -lt "10" ] && INDEX=0${INDEX}
+                [ "${INDEX}" -lt "10" ] && INDEX="0${INDEX}""
                 NEW_TAG=${TAG_PREFIX}${INDEX}
               fi
               git tag ${NEW_TAG} -m '' && git push origin ${NEW_TAG}
