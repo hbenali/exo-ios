@@ -14,7 +14,7 @@ jobs:
         run: | 
               git config --global user.email "exo-swf@exoplatform.com"
               git config --global user.name "eXo Software Factory"
-              CURRENT_TAG=$(git for-each-ref --sort=-taggerdate --count=1  refs/tags/${TAG_PREFIX})
+              CURRENT_TAG=$(git for-each-ref --sort=-taggerdate --count=1  refs/tags/${TAG_PREFIX} | sed 's|.*refs/tags/||')
               if [ -z "${CURRENT_TAG:-}" ]; then
                 NEW_TAG=${TAG_PREFIX}01
               else 
