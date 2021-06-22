@@ -59,7 +59,7 @@ jobs:
           git fetch --tags
           CURRENT_TAG=$(git tag -l | grep -P ${TAG_PREFIX} | tail -n 1)
           if [ -z "${CURRENT_TAG}" ]; then
-            "NEW_TAG=${TAG_PREFIX}01" >> $GITHUB_ENV
+            echo "NEW_TAG=${TAG_PREFIX}01" >> $GITHUB_ENV
           else 
             INDEX=$(echo $CURRENT_TAG | sed "s|.*${TAG_PREFIX}||")
             ((INDEX++))
