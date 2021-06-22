@@ -12,6 +12,7 @@ jobs:
         env: 
           TAG_PREFIX: '6.2-beta'
         run: | 
+              set +x
               git config --global user.email "exo-swf@exoplatform.com"
               git config --global user.name "eXo Software Factory"
               CURRENT_TAG=$(git tag -l | grep -P ${TAG_PREFIX} | tail -n 1)
