@@ -15,10 +15,11 @@ jobs:
               git config --global user.email "exo-swf@exoplatform.com"
               git config --global user.name "eXo Software Factory"
               CURRENT_TAG=$(git for-each-ref --sort=-taggerdate --count=1  refs/tags/${TAG_PREFIX} | sed 's|.*refs/tags/||')
+              echo $CURRENT_TAG
               if [ -z "${CURRENT_TAG:-}" ]; then
                 NEW_TAG=${TAG_PREFIX}01
               else 
-                INDEX=${CURRENT_TAG%$TAG_PREFIX*}  
+                INDEX=$(echo $CURRENT_TAG | sed "s|.*${TAG_PREFIX}||")
                 ((INDEX ++))
                 [ "${INDEX}" lt 10 ] && INDEX="0${INDEX}"
                 NEW_TAG=${TAG_PREFIX}${INDEX}
